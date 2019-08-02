@@ -62,7 +62,8 @@ stat.prototype.mediam = function(list) {
     }
 }
 
-stat.prototype.linearReagressition= function(y,x){
+
+stat.prototype.linearReagressition= function(x,y){
     //y = b0 + b1 * x
     var lr = {};
         var n = y.length;
@@ -83,7 +84,17 @@ stat.prototype.linearReagressition= function(y,x){
 
         lr['slope'] = (n * sum_xy - sum_x * sum_y) / (n*sum_xx - sum_x * sum_x);
         lr['intercept'] = (sum_y - lr.slope * sum_x)/n;
+        var result_x =[];
+        var result_y=[]
+        for(var v = 0; v < n; v++){
+            var x1 = x[v];
+            var y1 = x1 * lr['slope'] + lr['intercept'];
+            result_x.push(x1);
+            result_y.push(y1)
+        }
         lr['r2'] = Math.pow((n*sum_xy - sum_x*sum_y)/Math.sqrt((n*sum_xx-sum_x*sum_x)*(n*sum_yy-sum_y*sum_y)),2);
-
+        lr['result_X'] = result_x;
+        lr['result_y'] = result_y;
+        
         return lr;
 }
