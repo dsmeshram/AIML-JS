@@ -43,7 +43,7 @@ stat.prototype.mode = function(list) {
     }
 }
 
-stat.prototype.mediam = function(list) {
+stat.prototype.median = function(list) {
     if (Array.isArray(list)) {
         if (list.length === 0) return 0;
 
